@@ -11,9 +11,10 @@ class FLBooks
     static public function GetBookList($query)
     {
         $html = phpQuery::newDocument(file_get_contents('http://flibusta.is/booksearch?ask='.urlencode($query)));
-        $list = $html->find('div#main-wrapper')->find('ul')->find('li');
+        $main_wrapper = phpQuery::newDocument($html->find('div#main-wrapper'));
+        $ul = $main_wrapper->find('ul');
         echo('<pre>');
-        var_dump($list);
+        var_dump($ul);
         echo('</pre>');
     }
 }
