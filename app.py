@@ -7,3 +7,10 @@ app = flask.Flask(__name__)
 def search():
     data = bookapi.get_book_list(flask.request.values.get('query'))
     return flask.jsonify(data)
+
+@app.route('/')
+def index():
+    return 'hello world'
+
+if __name__ == '__main__':
+    app.run(debug=True)
