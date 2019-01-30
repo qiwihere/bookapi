@@ -3,8 +3,6 @@ from lxml import html
 import requests
 from urllib import parse
 
-
-
 query = 'Девушка в поезде'
 data = {
     'ask': parse.quote_plus(query)
