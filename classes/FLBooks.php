@@ -11,6 +11,9 @@ class FLBooks
     static public function GetBookList($query)
     {
         $html = file_get_html('http://flibusta.is/booksearch?ask='.urlencode($query));
-        echo(htmlspecialchars($html));
+        $list = $html->find('div.main-wrapper')->find('ul')->find('li');
+        echo('<pre>');
+        var_dump($list);
+        echo('</pre>');
     }
 }
