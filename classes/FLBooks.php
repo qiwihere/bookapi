@@ -5,7 +5,7 @@
  * Date: 30.01.2019
  * Time: 16:51
  */
-
+require_once('/lib/simple_html_dom.php');
 class FLBooks
 {
     static public function GetBookList($query)
