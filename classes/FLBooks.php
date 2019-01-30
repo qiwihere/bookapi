@@ -12,16 +12,10 @@ class FLBooks
     {
         $html = phpQuery::newDocument(file_get_contents('http://flibusta.is/booksearch?ask='.urlencode($query)));
         $main_wrapper = phpQuery::newDocument($html->find('ul'));
-
-        foreach($main_wrapper as $ul)
-        {
-            echo('<pre>');
-
-            $pqul = pq($ul);
-            var_dump($pqul->html());
-
-            echo('</pre>');
-        }
+        $list = pq($main_wrapper[1]);
+        echo('<pre>');
+        var_dump($list->html());
+        echo('</pre>');
 
 
     }
