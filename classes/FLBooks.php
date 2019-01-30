@@ -11,12 +11,21 @@ class FLBooks
     static public function GetBookList($query)
     {
         $html = phpQuery::newDocument(file_get_contents('http://flibusta.is/booksearch?ask='.urlencode($query)));
-        $main_wrapper = phpQuery::newDocument($html->find('ul'));
-        $list = pq($main_wrapper);
-        echo('<pre>');
-            var_dump($list->html());
-        echo('</pre>');
-
-
+        $_main = $html->find('div#main');
+        $_uls = $_main->find('ul:not([class]):last')->find('li');
+        foreach($_uls as $li)
+        {
+            #echo(htmlspecialchars(pq($li)->html()));
+            $book_raw = pq($li);
+            $link = $book_raw->find('a:first')->attr('href');
+            $name = $book_raw->find('a:first')->text();
+            $author = $book_raw->find('a:last')->text();
+            $books[] = [
+                'link'=>'http://flibusta.is'.$link.'/epub',
+                'name'=>$name,
+                'author'=>$author
+            ];
+        }
+        return json_encode($books);
     }
 }
