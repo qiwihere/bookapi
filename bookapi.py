@@ -13,6 +13,7 @@ f = r.content
 soup = BeautifulSoup(f, features='lxml')
 books_list = soup.find('div', {'id': 'main-wrapper'}).find('ul')
 
+
 result = {}
 key = 0
 for book in books_list:
