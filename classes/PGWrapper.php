@@ -16,4 +16,13 @@ class PGWrapper
                                               password=8264d475eee01c4080f157d8d260adbdc15f9133138424f0438f24ff3f8288e3")
         or die('Не удалось соединиться: ' . pg_last_error());
     }
+
+    function pushNewElement($chat_id,$query)
+    {
+        $pg_query = '
+            INSERT INTO "stats" ("chat_id", "query")
+            VALUES (\''.$chat_id.'\', \''.$query.'\');
+        ';
+        $result = pg_query($pg_query);
+    }
 }
