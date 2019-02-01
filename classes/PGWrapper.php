@@ -20,8 +20,8 @@ class PGWrapper
     function pushNewElement($chat_id,$query)
     {
         $pg_query = '
-            INSERT INTO "stats" ("chat_id", "query")
-            VALUES (\''.$chat_id.'\', \''.$query.'\');
+            INSERT INTO "stats" ("chat_id", "query","date")
+            VALUES (\''.$chat_id.'\', \''.$query.'\',\''.date("d.m.Y").'\');
         ';
         $result = pg_query($pg_query);
     }
@@ -29,14 +29,15 @@ class PGWrapper
     function getTotalQueries()
     {
         $pg_query = 'SELECT * FROM stats';
-
         $result = pg_query($pg_query);
-
         $ar_users = [];
-
+        $total_queries = 0;
         while($line = pg_fetch_array($result, null, PGSQL_ASSOC))
         {
-            var_dump($line);
+            if(!in_array($line['chat_id'], $ar_users))
+            {
+                $ar_users[] = $line['chat_id'];
+            }
         }
 
     }
