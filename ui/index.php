@@ -9,4 +9,5 @@
 require_once('../classes/PGWrapper.php');
 
 $pg = new PGWrapper();
-$pg->getTotalQueries();
+$res = $pg->getTotalQueries();
+var_dump($res);

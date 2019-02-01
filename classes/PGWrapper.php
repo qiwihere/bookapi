@@ -38,7 +38,9 @@ class PGWrapper
             {
                 $ar_users[] = $line['chat_id'];
             }
+            $total_queries++;
         }
+        return ['users'=>count($ar_users),'count'=>$total_queries];
 
     }
 }
