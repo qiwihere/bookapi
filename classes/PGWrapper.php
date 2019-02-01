@@ -25,4 +25,19 @@ class PGWrapper
         ';
         $result = pg_query($pg_query);
     }
+
+    function getTotalQueries()
+    {
+        $pg_query = 'SELECT * FROM stats';
+
+        $result = pg_query($pg_query);
+
+        $ar_users = [];
+
+        while($line = pg_fetch_array($result, null, PGSQL_ASSOC))
+        {
+            var_dump($line);
+        }
+
+    }
 }
